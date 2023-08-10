@@ -7,9 +7,9 @@ services:
     ports:
       - "1433:1433"
     environment:
-      MYSQL_ROOT_PASSWORD: "pass@123"
+      MSSQL_ROOT_PASSWORD: "pass@123"
       ACCEPT_EULA: "Y"
-      MYSQL_DATABASE: usermdb
+      MSSQL_DATABASE: usermdb
     networks:
       springboot-mssql-net:
 
