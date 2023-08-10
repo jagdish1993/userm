@@ -1,0 +1,31 @@
+version: "1"
+
+services:
+  mssqldb:
+    container_name: mssqldb
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    ports:
+      - "1433:1433"
+    environment:
+      MYSQL_ROOT_PASSWORD: "pass@123"
+      ACCEPT_EULA: "Y"
+      MYSQL_DATABASE: usermdb
+    networks:
+      springboot-mssql-net:
+
+  userm-restful-webservices:
+    container_name: userm
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+    networks:
+      springboot-mssql-net:
+    restart: on-failure
+
+networks:
+  springboot-mssql-net:
+ 
